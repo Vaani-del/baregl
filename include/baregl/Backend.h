@@ -68,8 +68,9 @@ namespace baregl
 		* Renders primitives from array data.
 		* @param p_primitiveMode Specifies the kind of primitives to render.
 		* @param p_indexCount The number of elements to render.
+		* @param p_firstIndex The first element in the bound VAO to start rendering from.
 		*/
-		void DrawElements(types::EPrimitiveMode p_primitiveMode, uint32_t p_indexCount);
+		void DrawElements(types::EPrimitiveMode p_primitiveMode, uint32_t p_indexCount, uint32_t p_firstIndex = 0);
 
 		/**
 		* Renders multiple instances of a set of elements.

@@ -191,9 +191,14 @@ namespace baregl
 		}
 	}
 
-	void Backend::DrawElements(types::EPrimitiveMode p_primitiveMode, uint32_t p_indexCount)
+	void Backend::DrawElements(types::EPrimitiveMode p_primitiveMode, uint32_t p_indexCount, uint32_t p_firstIndex)
 	{
-		glDrawElements(utils::EnumToValue<GLenum>(p_primitiveMode), p_indexCount, GL_UNSIGNED_INT, nullptr);
+		void* offset = nullptr;
+		if (p_firstIndex > 0)
+		{
+			offset = (void*)(p_firstIndex * sizeof(GLuint));
+		}
+		glDrawElements(utils::EnumToValue<GLenum>(p_primitiveMode), p_indexCount, GL_UNSIGNED_INT, offset);
 	}
 
 	void Backend::DrawElementsInstanced(types::EPrimitiveMode p_primitiveMode, uint32_t p_indexCount, uint32_t p_instances)
